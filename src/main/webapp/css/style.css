@@ -21,6 +21,11 @@
 .li-background{
     background-color: #634632;
     color: #ffffff;
+    height: 30px;
+    width: 500px;
+    margin-bottom: 5px;
+    margin-left: 30%;
+
 }
 
 .li_theme:hover{

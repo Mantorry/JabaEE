@@ -19,13 +19,10 @@
     <div class="list-group text-center py-3 px-3 ">
       <h2 class="colour-white">Функции системы:</h2>
       <ul class="list-group list-group-flush">
-        <li class="list-group-item list-group-iteminfo li-background li_theme"><a class="a-color" href="#">Должности</a>
-        <br>
-        <li class="list-group-item list-group-itemprimary li-background li_theme"><a class="a-color" href="#">Преподаватели</a>
-        <br>
-        <li class="list-group-item list-group-iteminfo li-background li_theme"><a class="a-color" href="#">Кафедры</a>
-        <br>
-        <li class="list-group-item list-group-iteminfo li-background li_theme"><a class="a-color" href="#">Факультеты</a>
+        <a class=" a-color li-background li_theme" href="posts">Должности</a>
+        <a class=" a-color li-background li_theme" href="teachers">Преподаватели</a>
+        <a class=" a-color li-background li_theme" href="chairs">Кафедры</a>
+        <a class=" a-color li-background li_theme" href="faculty">Факультеты</a>
       </ul>
     </div>
     <br><br>
