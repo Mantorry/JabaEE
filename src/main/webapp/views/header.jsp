@@ -7,15 +7,15 @@
     <!-- Настройка viewport -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
-<body>
+<body >
 <!-- Header -->
-<nav class="navbar navbar-light bg-primary">
-    <div class="container-fluid">
+<nav class="navbar navbar-light bg-primary back-h">
+    <div class="container-fluid back-h">
         <a class="navbar-brand" href="#">
             <img src="img/logo.png" alt="" width="80"
                  height="80" >
         </a>
-        <h2>Управление персоналом</h2>
+        <h2 class="colour-white">Управление преподавательским составом</h2>
     </div>
 </nav>
 <!-- /Header -->

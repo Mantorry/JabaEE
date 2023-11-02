@@ -9,11 +9,11 @@
 </head>
 <body>
 <!-- Footer -->
-<footer style="background: #d7d7d7 ; " class="page-footer fontsmall black">
+<footer class="page-footer fontsmall black back-f">
     <!-- Copyright -->
-    <div class="footer-copyright text-center py-3 px-3" >
-        Демонстрационное веб-приложение JavaEE © 2023 Copyright:
-        <a href="https://dolsoft.com/"> Dolsoft.com</a>
+    <div class="footer-copyright text-center py-3 px-3 back-f colour-white" >
+        Лушников Д.В. ИСТ-331 © 2023 Copyright:
+        <a class="a-color" href="https://github.com/Mantorry/JabaEE.git"> GitHub</a>
     </div>
     <!-- Copyright -->
 </footer>
