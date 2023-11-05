@@ -1,0 +1,39 @@
+.back-container {
+    background-color: #6fb4a0;
+}
+
+.back-f {
+    background-color: #287862;
+}
+
+.bg-primary {
+    background-color: #50a382 !important;
+}
+
+.back-h {
+    background-color: #50a382;
+}
+
+.colour-white {
+    color: #ffffff;
+}
+
+.li-background{
+    background-color: #50a382;
+    color: #ffffff;
+}
+
+.li_theme:hover{
+    background-color: #7aad9b;
+    transition: ease-in-out 20ms;
+}
+
+.a-color{
+    color: #ffffff;
+}
+
+.a-color:hover {
+    color: #5896ff;
+    transition: ease-in-out 20ms;
+    opacity: 100%;
+}
