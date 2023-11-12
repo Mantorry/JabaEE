@@ -27,14 +27,14 @@ public class FacultyDAO implements RepositoryDAO<Faculties> {
     public Long insert (Faculties faculty) throws Exception {
         try (Connection con = getConnection();
              PreparedStatement pst =
-                     con.prepareStatement(insert_faculty, new String[] { "id" })) {
+                     con.prepareStatement(insert_faculty, new String[] { "faculty_id" })) {
             long Id = -1L;
             pst.setString(1, faculty.getFullName());
             pst.setString(2, faculty.getShortName());
             pst.executeUpdate();
             ResultSet gk = pst.getGeneratedKeys();
             if (gk.next()) {
-                Id = gk.getLong("id");
+                Id = gk.getLong("faculty_id");
             }
             gk.close();
             return Id;

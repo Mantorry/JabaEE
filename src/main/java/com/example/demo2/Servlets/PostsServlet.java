@@ -1,6 +1,7 @@
 package com.example.demo2.Servlets;
 
 import com.example.demo2.DAO.ConnectionProperty;
+import com.example.demo2.DAO.DbConnectionBuilder;
 import com.example.demo2.DAO.PostDAO;
 import com.example.demo2.Entities.Posts;
 import jakarta.servlet.ServletException;
@@ -16,16 +17,16 @@ import java.util.List;
 
 @WebServlet("/posts")
 public class PostsServlet extends HttpServlet {
-
-    ConnectionProperty prop;
+    private final ConnectionProperty prop;
+    private final PostDAO dao;
     public PostsServlet() throws FileNotFoundException, IOException{
         super();
         prop = new ConnectionProperty();
+        dao = new PostDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Posts> posts;
-        PostDAO dao = new PostDAO();
         try{
             posts = dao.findAll();
             request.setAttribute("posts", posts);
@@ -35,7 +36,13 @@ public class PostsServlet extends HttpServlet {
         request.getRequestDispatcher("views/posts.jsp").forward(request, response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try{
+            dao.insert(new Posts(request.getParameter("fullname")));
+        }catch (Exception e){
+            System.out.println(e);
+        }
         doGet(request, response);
     }
 }

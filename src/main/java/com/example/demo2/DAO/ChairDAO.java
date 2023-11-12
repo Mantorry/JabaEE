@@ -27,7 +27,7 @@ public class ChairDAO implements RepositoryDAO<Chairs> {
     public Long insert (Chairs chairs) throws Exception {
         try (Connection con = getConnection();
              PreparedStatement pst =
-                     con.prepareStatement(insert_chair, new String[] { "id" })) {
+                     con.prepareStatement(insert_chair, new String[] { "chair_id" })) {
             long Id = -1L;
             pst.setLong(1, chairs.getIdFaculty());
             pst.setString(2, chairs.getFullName());
@@ -35,7 +35,7 @@ public class ChairDAO implements RepositoryDAO<Chairs> {
             pst.executeUpdate();
             ResultSet gk = pst.getGeneratedKeys();
             if (gk.next()) {
-                Id = gk.getLong("id");
+                Id = gk.getLong("chair_id");
             }
             gk.close();
             return Id;

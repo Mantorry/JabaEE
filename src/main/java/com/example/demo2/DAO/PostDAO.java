@@ -27,13 +27,13 @@ public class PostDAO implements RepositoryDAO<Posts> {
     public Long insert (Posts posts) throws Exception {
         try (Connection con = getConnection();
              PreparedStatement pst =
-                     con.prepareStatement(insert_post, new String[] { "id" })) {
+                     con.prepareStatement(insert_post, new String[] { "posts_id" })) {
             long Id = -1L;
             pst.setString(1, posts.getNamePost());
             pst.executeUpdate();
             ResultSet gk = pst.getGeneratedKeys();
             if (gk.next()) {
-                Id = gk.getLong("id");
+                Id = gk.getLong("posts_id");
             }
             gk.close();
             return Id;

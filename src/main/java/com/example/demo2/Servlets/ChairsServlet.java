@@ -19,14 +19,19 @@ import java.util.List;
 @WebServlet("/chairs")
 public class ChairsServlet extends HttpServlet {
 
-    ConnectionProperty prop;
-    public ChairsServlet() throws IOException {super();prop = new ConnectionProperty();}
+    private final ConnectionProperty prop;
+    private final FacultyDAO facultyDAO;
+    private final ChairDAO chairDAO;
+    public ChairsServlet() throws IOException {
+        super();
+        prop = new ConnectionProperty();
+        chairDAO = new ChairDAO();
+        facultyDAO = new FacultyDAO();
+    }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Faculties> faculties;
         List<Chairs> chairs;
-        FacultyDAO facultyDAO = new FacultyDAO();
-        ChairDAO chairDAO = new ChairDAO();
         try{
             faculties = facultyDAO.findAll();
             request.setAttribute("faculties", faculties);
@@ -42,6 +47,20 @@ public class ChairsServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        try {
+            String faculty = request.getParameter("faculty");
+            int index1 = faculty.indexOf('=');
+            int index2 = faculty.indexOf(",");
+            String r1 = faculty.substring(index1+1, index2);
+            long facultyId = Long.parseLong(r1.trim());
+            System.out.println(facultyId);
+            Faculties faculties = facultyDAO.findById(facultyId);
+            System.out.println(facultyId);
+            chairDAO.insert(new Chairs(facultyId, request.getParameter("fullName"), request.getParameter("shortName"), faculties));
+
+        }catch (Exception e){
+            System.out.println(e);
+        }
         doGet(request, response);
     }
 }

@@ -16,16 +16,16 @@ import java.util.List;
 
 @WebServlet("/faculty")
 public class FacultyServlet extends HttpServlet {
-
-    ConnectionProperty prop;
+    private final ConnectionProperty prop;
+    private final FacultyDAO dao;
     public FacultyServlet() throws FileNotFoundException, IOException{
         super();
         prop = new ConnectionProperty();
+        dao = new FacultyDAO();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Faculties> faculties;
-        FacultyDAO dao = new FacultyDAO();
         try{
             faculties = dao.findAll();
             request.setAttribute("faculties", faculties);
@@ -35,7 +35,13 @@ public class FacultyServlet extends HttpServlet {
         request.getRequestDispatcher("views/faculties.jsp").forward(request,response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        try{
+            dao.insert(new Faculties(request.getParameter("fullName"), request.getParameter("shortName")));
+        } catch (Exception e){
+            System.out.println(e);
+        }
         doGet(request, response);
     }
 }

@@ -42,6 +42,18 @@ public class Teachers {
         this.posts = posts;
     }
 
+    public Teachers(Long idChairs, Long idPosts, String firstName, String secondName, String lastName, String phone, String email, Chairs chairs, Posts posts) {
+        this.idChairs = idChairs;
+        this.idPosts = idPosts;
+        this.firstName = firstName;
+        this.secondName = secondName;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.email = email;
+        this.chairs = chairs;
+        this.posts = posts;
+    }
+
     public Long getId() {
         return id;
     }

@@ -30,6 +30,13 @@ public class Chairs {
         this.faculties = faculties;
     }
 
+    public Chairs(Long idFaculty, String fullName, String shortName, Faculties faculties) {
+        this.idFaculty = idFaculty;
+        this.fullName = fullName;
+        this.shortName = shortName;
+        this.faculties = faculties;
+    }
+
     public Long getId() {
         return id;
     }

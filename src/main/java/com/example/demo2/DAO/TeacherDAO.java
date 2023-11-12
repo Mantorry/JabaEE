@@ -27,7 +27,7 @@ public class TeacherDAO implements RepositoryDAO<Teachers> {
     public Long insert (Teachers teachers) throws Exception {
         try (Connection con = getConnection();
              PreparedStatement pst =
-                     con.prepareStatement(insert_teacher, new String[] { "id" })) {
+                     con.prepareStatement(insert_teacher, new String[] { "teachers_id" })) {
             long Id = -1L;
             pst.setLong(1, teachers.getIdChairs());
             pst.setLong(2, teachers.getIdPosts());
@@ -39,7 +39,7 @@ public class TeacherDAO implements RepositoryDAO<Teachers> {
             pst.executeUpdate();
             ResultSet gk = pst.getGeneratedKeys();
             if (gk.next()) {
-                Id = gk.getLong("id");
+                Id = gk.getLong("teachers_id");
             }
             gk.close();
             return Id;
