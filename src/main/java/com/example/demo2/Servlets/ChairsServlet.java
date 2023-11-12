@@ -32,6 +32,9 @@ public class ChairsServlet extends HttpServlet {
             request.setAttribute("faculties", faculties);
             chairs = chairDAO.findAll();
             request.setAttribute("chairs", chairs);
+            for (Chairs ch:chairs){
+                ch.setFaculties(facultyDAO.FindById(ch.getIdFaculty(), faculties));
+            }
         }catch (Exception e){
             System.out.println(e);
         }

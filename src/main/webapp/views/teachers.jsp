@@ -31,6 +31,8 @@
                 <table class="table">
                     <thead>
                     <th scope="col">Код</th>
+                    <th scope="col">Кафедра</th>
+                    <th scope="col">Должность</th>
                     <th scope="col">Фамилия</th>
                     <th scope="col">Имя</th>
                     <th scope="col">Отчество</th>

@@ -38,6 +38,10 @@ public class TeachersServlet extends HttpServlet {
             request.setAttribute("posts", posts);
             teachers = teacherDAO.findAll();
             request.setAttribute("teachers", teachers);
+            for (Teachers teach:teachers){
+                teach.setChairs(chairDAO.FindById(teach.getIdChairs(), chairs));
+                teach.setPosts(postDAO.FindById(teach.getIdPosts(), posts));
+            }
         }catch (Exception e){
             System.out.println(e);
         }
