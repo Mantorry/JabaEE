@@ -1,5 +1,7 @@
 package com.example.demo2.DAO;
 
+import com.example.demo2.DAO.Connection.ConnectionBuilder;
+import com.example.demo2.DAO.Connection.DbConnectionBuilder;
 import com.example.demo2.Entities.Faculties;
 
 import java.sql.Connection;
@@ -46,8 +48,7 @@ public class FacultyDAO implements RepositoryDAO<Faculties> {
     // Редактирование должности
     @Override
     public void update(Faculties faculty) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(edit_faculty)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(edit_faculty)) {
             pst.setString(1, faculty.getFullName());
             pst.setString(2, faculty.getShortName());
             pst.setLong(3, faculty.getId());
@@ -59,8 +60,7 @@ public class FacultyDAO implements RepositoryDAO<Faculties> {
     // Удаление должности
     @Override
     public void delete(Long Id) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(delete_faculty)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(delete_faculty)) {
             pst.setLong(1, Id);
             pst.executeUpdate();
         } catch (Exception e) {
@@ -71,9 +71,7 @@ public class FacultyDAO implements RepositoryDAO<Faculties> {
     @Override
     public Faculties findById(Long Id) {
         Faculties faculties = null;
-        try (Connection con = getConnection()) {
-            PreparedStatement pst =
-                    con.prepareStatement(select_faculty_ById);
+        try (Connection con = getConnection()) { PreparedStatement pst = con.prepareStatement(select_faculty_ById);
             pst.setLong(1, Id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {

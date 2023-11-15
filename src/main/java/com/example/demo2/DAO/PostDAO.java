@@ -1,5 +1,7 @@
 package com.example.demo2.DAO;
 
+import com.example.demo2.DAO.Connection.ConnectionBuilder;
+import com.example.demo2.DAO.Connection.DbConnectionBuilder;
 import com.example.demo2.Entities.Posts;
 
 import java.sql.Connection;
@@ -45,8 +47,7 @@ public class PostDAO implements RepositoryDAO<Posts> {
     // Редактирование должности
     @Override
     public void update(Posts posts) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(edit_post)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(edit_post)) {
             pst.setString(1, posts.getNamePost());
             pst.setLong(2, posts.getId());
             pst.executeUpdate();
@@ -57,8 +58,7 @@ public class PostDAO implements RepositoryDAO<Posts> {
     // Удаление должности
     @Override
     public void delete(Long Id) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(delete_post)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(delete_post)) {
             pst.setLong(1, Id);
             pst.executeUpdate();
         } catch (Exception e) {
@@ -69,9 +69,7 @@ public class PostDAO implements RepositoryDAO<Posts> {
     @Override
     public Posts findById(Long Id) {
         Posts posts = null;
-        try (Connection con = getConnection()) {
-            PreparedStatement pst =
-                    con.prepareStatement(select_post_ById);
+        try (Connection con = getConnection()) {PreparedStatement pst = con.prepareStatement(select_post_ById);
             pst.setLong(1, Id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {

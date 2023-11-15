@@ -30,22 +30,12 @@
                     <thead>
                     <th scope="col">Код</th>
                     <th scope="col">Должности</th>
-                    <th scope="col">Редактировать</th>
-                    <th scope="col">Удалить</th>
                     </thead>
                     <tbody>
                     <c:forEach var="post" items="${posts}">
                         <tr>
                             <td>${post.getId()}</td>
                             <td>${post.getNamePost()}</td>
-                            <td width="20"><a href="<c:url value="/editpost?id=${post.getId()}" />" role="button"
-                                              class="btn btn-outline-primary">
-                                <img alt="Редактировать"
-                                     src="img/edit.png"></a></td>
-                            <td width="20"><a href="<c:url value="/deletepost?id=${post.getId()}" />" role="button"
-                                              class="btn btn-outline-primary">
-                                <img alt="Удалить"
-                                     src="img/delete.png" onclick="return confirm('Удалить должность с ID: ' +${post.getId()} + '?')"></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -53,19 +43,25 @@
             </div>
             <div class="col-4 border px-4 a-color">
                 <form method="POST" action="">
-                    <h3>Новая должность</h3>
+                    <h3>Изменить должность</h3>
                     <div class="mb-3">
-                        <br> <label for="inputName"
-                                    class="col-sm-3 col-form-label a-color">Название должности</label>
+                        <br> <label for="idpost"
+                                    class="col-sm-3 col-form-label a-color">Код должности</label>
                         <div class="col-sm-6">
-                            <input type="text" name="fullname"
-                                   class="form-control" id="inputName" />
+                            <input type="text" class="form-control" readonly id="idpost" value="${postEdit.getId()}" />
+                        </div>
+                        <label for="inputName"
+                               class="col-sm-3 col-form-label a-color">Название должности</label>
+                        <div class="col-sm-6">
+                            <input type="text" name="namepost"
+                                   class="form-control" id="inputName"  value="${postEdit.getNamePost()}"/>
                         </div>
                     </div>
                     <p>
                         <br> <br> <br>
                         <button type="submit"
-                                class="btn btn-primary">Добавить</button>
+                                class="btn btn-primary">Редактировать</button>
+                        <a href='<c:url value="/posts" />' role="button" class="btn btn-secondary">Отменить</a>
                         <br>
                     </p>
                 </form>

@@ -38,8 +38,6 @@
                     <th scope="col">Отчество</th>
                     <th scope="col">Номер телефона</th>
                     <th scope="col">Почта</th>
-                    <th scope="col">Редактировать</th>
-                    <th scope="col">Удалить</th>
                     </thead>
                     <tbody>
                     <c:forEach var="teacher" items="${teachers}">
@@ -52,15 +50,6 @@
                             <td>${teacher.getLastName()}</td>
                             <td>${teacher.getPhone()}</td>
                             <td>${teacher.getEmail()}</td>
-
-                            <td width="20"><a href="<c:url value="/editteacher?id=${teacher.getId()}" />" role="button"
-                                              class="btn btn-outline-primary">
-                                <img alt="Редактировать"
-                                     src="img/edit.png"></a></td>
-                            <td width="20"><a href="<c:url value="/deleteteacher?id=${teacher.getId()}" />" role="button"
-                                              class="btn btn-outline-primary">
-                                <img alt="Удалить"
-                                     src="img/delete.png" onclick="return confirm('Удалить преподавателя с ID: ' +${teacher.getId()} + '?')"></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -68,13 +57,19 @@
             </div>
             <div class="col-4 border px-4 a-color">
                 <form method="POST" action="">
-                    <h3>Новый преподаватель</h3>
+                    <h3 class="a-color">Редактировать преподавателя</h3>
                     <div class="mb-3 row">
+                        <label for="idteacher"
+                               class="col-sm-3 col-form-label a-color">Код преподавателя</label>
+                        <div class="col-sm-7">
+                            <input type="text" class="form-control"
+                                   readonly id="idteacher" value="${teacherEdit.getId()}" />
+                        </div>
                         <label for="chairs"
                                class="col-sm-3 col-form-label a-color">Кафедра</label>
                         <div class="col-sm-7">
-                            <select name="chairs" class="form-control">
-                                <option>Выберите кафедру</option>
+                            <select name="chairField" class="form-control">
+                                <option value="${teacherEdit.chairs}">${teacherEdit.chairs.getFullName()}</option>
                                 <c:forEach var="chair" items="${chairs}">
                                     <option value="${chair}">
                                         <c:out value="${chair.getFullName()}"/>
@@ -87,8 +82,8 @@
                         <label for="posts"
                                class="col-sm-3 col-form-label a-color">Должность</label>
                         <div class="col-sm-7">
-                            <select name="posts" class="form-control">
-                                <option>Выберите должность </option>
+                            <select name="postField" class="form-control">
+                                <option value="${teacherEdit.posts}">${teacherEdit.posts.getNamePost()}</option>
                                 <c:forEach var="post" items="${posts}">
                                     <option value="${post}">
                                         <c:out value="${post.getNamePost()}"/>
@@ -99,48 +94,49 @@
                     </div>
                     <div class="mb-3">
                         <label for="inputSecondName"
-                                    class="col-sm-3 col-form-label a-color">Фамилия</label>
+                               class="col-sm-3 col-form-label a-color">Фамилия</label>
                         <div class="col-sm-6">
                             <input type="text" name="secondName"
-                                   class="form-control" id="inputSecondName" />
+                                   class="form-control" id="inputSecondName" value="${teacherEdit.getSecondName()}"/>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="inputfirstName"
-                                    class="col-sm-3 col-form-label a-color">Имя</label>
+                               class="col-sm-3 col-form-label a-color">Имя</label>
                         <div class="col-sm-6">
                             <input type="text" name="firstName"
-                                   class="form-control" id="inputfirstName" />
+                                   class="form-control" id="inputfirstName" value="${teacherEdit.getFirstName()}"/>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="inputLastName"
-                                    class="col-sm-3 col-form-label a-color">Отчество</label>
+                               class="col-sm-3 col-form-label a-color">Отчество</label>
                         <div class="col-sm-6">
                             <input type="text" name="lastName"
-                                   class="form-control" id="inputLastName" />
+                                   class="form-control" id="inputLastName" value="${teacherEdit.getLastName()}"/>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="inputPhone"
-                                    class="col-sm-3 col-form-label a-color">Номер телефона</label>
+                               class="col-sm-3 col-form-label a-color">Номер телефона</label>
                         <div class="col-sm-6">
                             <input type="text" name="phone"
-                                   class="form-control" id="inputPhone" />
+                                   class="form-control" id="inputPhone" value="${teacherEdit.getPhone()}"/>
                         </div>
                     </div>
                     <div class="mb-3">
                         <label for="inputEmail"
-                                    class="col-sm-3 col-form-label a-color">Почта</label>
+                               class="col-sm-3 col-form-label a-color">Почта</label>
                         <div class="col-sm-6">
                             <input type="text" name="email"
-                                   class="form-control" id="inputEmail" />
+                                   class="form-control" id="inputEmail" value="${teacherEdit.getEmail()}"/>
                         </div>
                     </div>
                     <p>
                         <br> <br> <br>
                         <button type="submit"
-                                class="btn btn-primary">Добавить</button>
+                                class="btn btn-primary">Редактировать</button>
+                        <a href='<c:url value="/teachers" />' role="button" class="btn btn-secondary">Отменить</a>
                         <br>
                     </p>
                 </form>

@@ -1,11 +1,10 @@
-package com.example.demo2.DAO;
+package com.example.demo2.DAO.Connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DbConnectionBuilder implements ConnectionBuilder {
-
     public DbConnectionBuilder() {
         try{
             Class.forName(ConnectionProperty.getProperty("db.driver.class"));
@@ -13,7 +12,6 @@ public class DbConnectionBuilder implements ConnectionBuilder {
             ex.printStackTrace();
         }
     }
-
     @Override
     public Connection getConnection() throws SQLException {
         String url = ConnectionProperty.getProperty("db.url");

@@ -1,5 +1,7 @@
 package com.example.demo2.DAO;
 
+import com.example.demo2.DAO.Connection.ConnectionBuilder;
+import com.example.demo2.DAO.Connection.DbConnectionBuilder;
 import com.example.demo2.Entities.Teachers;
 
 import java.sql.Connection;
@@ -12,10 +14,14 @@ import java.util.List;
 public class TeacherDAO implements RepositoryDAO<Teachers> {
     public TeacherDAO(){}
 
-    private static final String select_all = "SELECT teachers_id, chair_id, post_id, second_name, first_name, last_Name, phone, email FROM teachers";
-    private static final String select_teacher_ById = "SELECT teachers_id, chair_id, post_id, second_name, first_name, last_Name, phone, email  FROM teachers WHERE teachers_id = ?";
-    private static final String insert_teacher = "INSERT INTO teachers(chair_id, post_id, second_name, first_name, last_Name, phone, email) VALUES(?, ?, ?, ?, ?, ?, ?)";
-    private static final String edit_teacher = "UPDATE teachers SET chair_id = ?, post_id = ?, second_name = ?, first_name = ?, last_Name = ?, phone = ?, email = ? WHERE teachers_id = ? ";
+    private static final String select_all = "SELECT teachers_id, chair_id, post_id, second_name, first_name, " +
+            "last_Name, phone, email FROM teachers";
+    private static final String select_teacher_ById = "SELECT teachers_id, chair_id, post_id, second_name, " +
+            "first_name, last_Name, phone, email  FROM teachers WHERE teachers_id = ?";
+    private static final String insert_teacher = "INSERT INTO teachers(chair_id, post_id, second_name, first_name, " +
+            "last_Name, phone, email) VALUES(?, ?, ?, ?, ?, ?, ?)";
+    private static final String edit_teacher = "UPDATE teachers SET chair_id = ?, post_id = ?, second_name = ?, " +
+            "first_name = ?, last_Name = ?, phone = ?, email = ? WHERE teachers_id = ? ";
     private static final String delete_teacher = "DELETE FROM teachers WHERE teachers_id = ?";
 
     private ConnectionBuilder builder = new DbConnectionBuilder();
@@ -51,8 +57,7 @@ public class TeacherDAO implements RepositoryDAO<Teachers> {
     // Редактирование должности
     @Override
     public void update(Teachers teachers) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(edit_teacher)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(edit_teacher)) {
             pst.setLong(1, teachers.getIdChairs());
             pst.setLong(2, teachers.getIdPosts());
             pst.setString(3, teachers.getSecondName());
@@ -69,8 +74,7 @@ public class TeacherDAO implements RepositoryDAO<Teachers> {
     // Удаление должности
     @Override
     public void delete(Long Id) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(delete_teacher)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(delete_teacher)) {
             pst.setLong(1, Id);
             pst.executeUpdate();
         } catch (Exception e) {
@@ -81,9 +85,7 @@ public class TeacherDAO implements RepositoryDAO<Teachers> {
     @Override
     public Teachers findById(Long Id) {
         Teachers teachers = null;
-        try (Connection con = getConnection()) {
-            PreparedStatement pst =
-                    con.prepareStatement(select_teacher_ById);
+        try (Connection con = getConnection()) {PreparedStatement pst = con.prepareStatement(select_teacher_ById);
             pst.setLong(1, Id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {

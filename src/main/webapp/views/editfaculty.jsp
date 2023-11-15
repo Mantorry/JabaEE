@@ -31,8 +31,6 @@
                     <th scope="col">Код</th>
                     <th scope="col">Факультет</th>
                     <th scope="col">Аббревиатура</th>
-                    <th scope="col">Редактировать</th>
-                    <th scope="col">Удалить</th>
                     </thead>
                     <tbody>
                     <c:forEach var="faculty" items="${faculties}">
@@ -40,14 +38,6 @@
                             <td>${faculty.getId()}</td>
                             <td>${faculty.getFullName()}</td>
                             <td>${faculty.getShortName()}</td>
-                            <td width="20"><a href="<c:url value="/editfaculty?id=${faculty.getId()}" />" role="button"
-                                              class="btn btn-outline-primary">
-                                <img alt="Редактировать"
-                                     src="img/edit.png"></a></td>
-                            <td width="20"><a href="<c:url value="/deletefaculty?id=${faculty.getId()}"/>" role="button"
-                                              class="btn btn-outline-primary">
-                                <img alt="Удалить"
-                                     src="img/delete.png" onclick="return confirm('Удалить факультет с ID: ' +${faculty.getId()} + '?')"></a></td>
                         </tr>
                     </c:forEach>
                     </tbody>
@@ -55,25 +45,32 @@
             </div>
             <div class="col-4 border px-4 a-color">
                 <form method="POST" action="">
-                    <h3>Новый факультет</h3>
+                    <h3>Редактировать факультет</h3>
                     <div class="mb-3">
-                        <br> <label for="inputFull"
+                        <br>
+                        <label for="idfaculty"
+                                    class="col-sm-3 col-form-label a-color">Код факультета</label>
+                        <div class="col-sm-6">
+                            <input type="text" class="form-control" readonly id="idfaculty" value="${facultyEdit.getId()}"/>
+                        </div>
+                        <label for="inputFull"
                                     class="col-sm-3 col-form-label a-color">Полное название</label>
                         <div class="col-sm-6">
                             <input type="text" name="fullName"
-                            class="form-control" id="inputFull" />
+                                   class="form-control" id="inputFull" value='${facultyEdit.getFullName()}' />
                         </div>
                         <label for="inputShort"
                                class="col-sm-3 col-form-label a-color">Аббревиатура</label>
                         <div class="col-sm-6">
                             <input type="text" name="shortName"
-                                   class="form-control" id="inputShort" />
+                                   class="form-control" id="inputShort" value='${facultyEdit.getShortName()}'/>
                         </div>
                     </div>
                     <p>
                         <br> <br> <br>
                         <button type="submit"
-                                class="btn btn-primary">Добавить</button>
+                                class="btn btn-primary">Редактировать</button>
+                        <a href='<c:url value="/faculty" />' role="button" class="btn btn-secondary">Отменить</a>
                         <br>
                     </p>
                 </form>

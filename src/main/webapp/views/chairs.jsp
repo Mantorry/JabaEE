@@ -45,28 +45,28 @@ n.js"></script>
                         <td>${chair.faculties.getFullName()}</td>
                         <td>${chair.getFullName()}</td>
                         <td>${chair.getShortName()}</td>
-                        <td width="20"><a href="#" role="button"
+                        <td width="20"><a href="<c:url value="/editchair?id=${chair.getId()}" />" role="button"
                                           class="btn btn-outline-primary">
                             <img alt="Редактировать"
                                  src="img/edit.png"></a>
                         </td>
-                        <td width="20"><a href="#" role="button"
+                        <td width="20"><a href="<c:url value="/deletechair?id=${chair.getId()}"/>" role="button"
                                           class="btn btn-outline-primary">
                             <img alt="Удалить"
-                                 src="img/delete.png"></a>
+                                 src="img/delete.png" onclick="return confirm('Удалить кафедру с ID: ' +${chair.getId()} + '?')"></a>
                         </td>
                     </tr>
                 </c:forEach>
                 </tbody>
             </table>
         </div>
-        <div class="col-4 border px-4">
+        <div class="col-4 border px-4 a-color">
             <form method="POST" action="">
                 <h3>Новая кафедра:</h3>
                 <br>
                 <div class="mb-3 row">
                     <label for="inputFaculty"
-                    class="col-sm-3 col-form-label">Факультет</label>
+                    class="col-sm-3 col-form-label a-color">Факультет</label>
                     <div class="col-sm-7">
                         <select name="faculty" class="form-control">
                             <option>Выберите факультет</option>
@@ -80,7 +80,7 @@ n.js"></script>
                 </div>
                 <div class="mb-3 row">
                     <label for="inputFull"
-                           class="col-sm-3 col-form-label">Кафедра</label>
+                           class="col-sm-3 col-form-label a-color">Кафедра</label>
                     <div class="col-sm-7">
                         <input type="text" class="form-control"
                                id="inputFull" name="fullName" />
@@ -88,7 +88,7 @@ n.js"></script>
                 </div>
                 <div class="mb-3 row">
                     <label for="inputShort"
-                    class="col-sm-3 col-form-label">Аббревиатура</label>
+                    class="col-sm-3 col-form-label a-color">Аббревиатура</label>
                     <div class="col-sm-7">
                         <input type="text"
                                class="form-control" id="inputShort"

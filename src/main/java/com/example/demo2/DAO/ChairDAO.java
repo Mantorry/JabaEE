@@ -1,5 +1,7 @@
 package com.example.demo2.DAO;
 
+import com.example.demo2.DAO.Connection.ConnectionBuilder;
+import com.example.demo2.DAO.Connection.DbConnectionBuilder;
 import com.example.demo2.Entities.Chairs;
 
 import java.sql.Connection;
@@ -15,7 +17,7 @@ public class ChairDAO implements RepositoryDAO<Chairs> {
     private static final String select_all = "SELECT chair_id, faculty_id, full_name, short_name FROM chair";
     private static final String select_chair_ById = "SELECT chair_id, faculty_id, full_name, short_name FROM chair WHERE chair_id = ?";
     private static final String insert_chair = "INSERT INTO chair(faculty_id, full_name, short_name) VALUES(?, ?, ?)";
-    private static final String edit_chair = "UPDATE chair SET facult_id = ?, full_name = ?, short_name = ? WHERE chair_id = ? ";
+    private static final String edit_chair = "UPDATE chair SET faculty_id = ?, full_name = ?, short_name = ? WHERE chair_id = ? ";
     private static final String delete_chair = "DELETE FROM chair WHERE chair_id = ?";
 
     private ConnectionBuilder builder = new DbConnectionBuilder();
@@ -47,8 +49,7 @@ public class ChairDAO implements RepositoryDAO<Chairs> {
     // Редактирование должности
     @Override
     public void update(Chairs chairs) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(edit_chair)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(edit_chair)) {
             pst.setLong(1, chairs.getIdFaculty());
             pst.setString(2, chairs.getFullName());
             pst.setString(3, chairs.getShortName());
@@ -61,8 +62,7 @@ public class ChairDAO implements RepositoryDAO<Chairs> {
     // Удаление должности
     @Override
     public void delete(Long Id) {
-        try (Connection con = getConnection(); PreparedStatement pst
-                = con.prepareStatement(delete_chair)) {
+        try (Connection con = getConnection(); PreparedStatement pst = con.prepareStatement(delete_chair)) {
             pst.setLong(1, Id);
             pst.executeUpdate();
         } catch (Exception e) {
@@ -73,9 +73,7 @@ public class ChairDAO implements RepositoryDAO<Chairs> {
     @Override
     public Chairs findById(Long Id) {
         Chairs chairs = null;
-        try (Connection con = getConnection()) {
-            PreparedStatement pst =
-                    con.prepareStatement(select_chair_ById);
+        try (Connection con = getConnection()) {PreparedStatement pst = con.prepareStatement(select_chair_ById);
             pst.setLong(1, Id);
             ResultSet rs = pst.executeQuery();
             if (rs.next()) {

@@ -1,4 +1,4 @@
-package com.example.demo2.DAO;
+package com.example.demo2.DAO.Connection;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,11 +1,10 @@
 package com.example.demo2.Servlets;
 
 import com.example.demo2.DAO.ChairDAO;
-import com.example.demo2.DAO.ConnectionProperty;
+import com.example.demo2.DAO.Connection.ConnectionProperty;
 import com.example.demo2.DAO.FacultyDAO;
 import com.example.demo2.Entities.Chairs;
 import com.example.demo2.Entities.Faculties;
-import com.example.demo2.Entities.Posts;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -13,7 +12,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/chairs")
@@ -53,9 +51,7 @@ public class ChairsServlet extends HttpServlet {
             int index2 = faculty.indexOf(",");
             String r1 = faculty.substring(index1+1, index2);
             long facultyId = Long.parseLong(r1.trim());
-            System.out.println(facultyId);
             Faculties faculties = facultyDAO.findById(facultyId);
-            System.out.println(facultyId);
             chairDAO.insert(new Chairs(facultyId, request.getParameter("fullName"), request.getParameter("shortName"), faculties));
 
         }catch (Exception e){

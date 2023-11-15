@@ -1,7 +1,6 @@
 package com.example.demo2.Servlets;
 
-import com.example.demo2.DAO.ConnectionProperty;
-import com.example.demo2.DAO.DbConnectionBuilder;
+import com.example.demo2.DAO.Connection.ConnectionProperty;
 import com.example.demo2.DAO.PostDAO;
 import com.example.demo2.Entities.Posts;
 import jakarta.servlet.ServletException;
@@ -12,7 +11,6 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 @WebServlet("/posts")

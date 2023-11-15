@@ -11,7 +11,7 @@
 <!-- Header -->
 <nav class="navbar navbar-light bg-primary back-h">
     <div class="container-fluid back-h">
-        <a class="navbar-brand" href="main">
+        <a class="navbar-brand" href="/main">
             <img src="img/logo.png" alt="" width="80"
                  height="80" >
         </a>
